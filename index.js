@@ -6,7 +6,7 @@ const port = 3000;
 // const htmlDir = `${__dirname}/html/`
 app.set('view engine', 'ejs');
 
-app.use(express.static('public'));
+app.use(express.static('assets'));
 app.get('/', (_, res) => {
     res.render('index');
 });
