@@ -46,5 +46,3 @@ app.listen(port, () => {
 //   }).catch( (err) => {
 //     console.error('Reload could not start, could not start server/sample app', err)
 //   })
-
-export default app;
