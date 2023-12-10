@@ -1,0 +1,24 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>priority-test</title>
+</head>
+    <h1>body-image-tag-Test</h1>
+    <p>[`image${1 | 2 | 3 | 4}`='low' | 'high' | 'auto']でクエリーを設定してください</p>
+    <p style="word-break: auto-phrase;">e.g. /body-image-tag?image1=low&image2=high&image4=hogehoge の場合、image1=low, image2=high, image3=auto, image4=auto になります</p>
+    <!-- ここに他のHTMLコンテンツを追加 -->
+    <div id="settings">
+      <p>現在の設定:</p>
+      <p>image1: <%= image1 %></p>
+      <p>image2: <%= image2 %></p>
+      <p>image3: <%= image3 %></p>
+      <p>image4: <%= image4 %></p>
+    </div>
+    <div id="imgs">
+      <img src="/image1.jpg" alt="image1" fetchpriority="<%= image1 %>">
+      <img src="/image2.jpg" alt="image2" fetchpriority="<%= image2 %>">
+      <img src="/image3.jpg" alt="image3" fetchpriority="<%= image3 %>">
+      <img src="/image4.jpg" alt="image4" fetchpriority="<%= image4 %>">
+    </div>
+</body>
+</html>
