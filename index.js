@@ -46,3 +46,6 @@ app.listen(port, () => {
 //   }).catch( (err) => {
 //     console.error('Reload could not start, could not start server/sample app', err)
 //   })
+
+// index.js
+module.exports = app
