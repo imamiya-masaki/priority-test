@@ -11,10 +11,10 @@ app.get('/', (_, res) => {
 
 /**
  * 引数が`image${1|2|3|4}`を満たすか判定する
- * @param {string} value 
+ * @param {string | undefined} value 
  */
 const isImageName = (value) => {
-  return !!value.match(/image[1-4]/)
+  return !!value?.match(/image[1-4]/)
 }
 
 const getImageFetchQuerys = (query) => {
