@@ -2,55 +2,94 @@
 <head>
     <meta charset="UTF-8">
     <title>priority-test</title>
+    <style>
+    /* 画像のスタイル設定 */
+    #imgs  {
+      display: grid;
+      grid-template-columns: repeat(2, 500px); /* 2列のグリッドレイアウト */
+      grid-template-rows: repeat(2, 500px); /* 2行のグリッドレイアウト */
+      gap: 10px; /* グリッド間のギャップ */
+    }
+
+    #imgs .img-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+    }
+
+    #imgs .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 画像のアスペクト比を保持しつつ、指定されたサイズに合わせる */
+      border: 1px solid black; /* 枠線を追加 */
+    }
+
+    #imgs .img-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5); /* 半透明の背景 */
+      padding: 5px;
+    }
+  </style>
 </head>
-    <h1>body-image-tag-Test</h1>
-    <p>[`image${1 | 2 | 3 | 4}`='low' | 'high' | 'auto']でクエリーを設定してください</p>
-    <p style="word-break: auto-phrase;">e.g. /body-image-tag?image1=low&image2=high&image4=hogehoge の場合、image1=low, image2=high, image3=auto, image4=auto になります</p>
-        <!-- 画像のフェッチ優先度を設定するフォーム -->
-        <form action="/body-image-tag" method="get" id="body-image-tag-form">
-          <label for="image1">image1:</label>
-          <select name="image1" id="image1">
-            <option value="auto">auto</option>
-              <option value="low">low</option>
-              <option value="high">high</option>
-          </select>
-  
-          <label for="image2">image2:</label>
-          <select name="image2" id="image2">
-            <option value="auto">auto</option>
-              <option value="low">low</option>
-              <option value="high">high</option>
-          </select>
-  
-          <label for="image3">image3:</label>
-          <select name="image3" id="image3">
-            <option value="auto">auto</option>
-              <option value="low">low</option>
-              <option value="high">high</option>
-          </select>
-  
-          <label for="image4">image4:</label>
-          <select name="image4" id="image4">
-            <option value="auto">auto</option>
-              <option value="low">low</option>
-              <option value="high">high</option>
-          </select>
-  
-          <input type="submit" value="フェッチ優先度を設定">
-      </form>
-    <!-- ここに他のHTMLコンテンツを追加 -->
-    <div id="settings">
-      <p>現在の設定:</p>
-      <p>image1: <%= image1 %></p>
-      <p>image2: <%= image2 %></p>
-      <p>image3: <%= image3 %></p>
-      <p>image4: <%= image4 %></p>
-    </div>
+<body>
+  <h1>body-image-tag-Test</h1>
+  <p>[`image${1 | 2 | 3 | 4}`='low' | 'high' | 'auto']でクエリーを設定してください</p>
+  <p style="word-break: auto-phrase;">e.g. /body-image-tag?image1=low&image2=high&image4=hogehoge の場合、image1=low, image2=high, image3=auto, image4=auto になります</p>
+
+  <!-- 画像のフェッチ優先度を設定するフォーム -->
+  <div id="redirect-form">
+  <form action="/body-image-tag" method="get" id="body-image-tag-form">
+    <label for="image1">image1:</label>
+    <select name="image1" id="image1">
+      <option value="auto">auto</option>
+      <option value="low">low</option>
+      <option value="high">high</option>
+    </select>
+
+    <label for="image2">image2:</label>
+    <select name="image2" id="image2">
+      <option value="auto">auto</option>
+      <option value="low">low</option>
+      <option value="high">high</option>
+    </select>
+
+    <label for="image3">image3:</label>
+    <select name="image3" id="image3">
+      <option value="auto">auto</option>
+      <option value="low">low</option>
+      <option value="high">high</option>
+    </select>
+
+    <label for="image4">image4:</label>
+    <select name="image4" id="image4">
+      <option value="auto">auto</option>
+      <option value="low">low</option>
+      <option value="high">high</option>
+    </select>
+
+    <input type="submit" value="フェッチ優先度を設定">
+  </form>
+  </div>
     <div id="imgs">
-      <img src="/image1.jpg" alt="image1" fetchpriority="<%= image1 %>">
-      <img src="/image2.jpg" alt="image2" fetchpriority="<%= image2 %>">
-      <img src="/image3.jpg" alt="image3" fetchpriority="<%= image3 %>">
-      <img src="/image4.jpg" alt="image4" fetchpriority="<%= image4 %>">
+      <div class="img-container">
+        <img src="/image1.jpg" alt="image1" fetchpriority="<%= image1 %>">
+        <div class="img-text">image1</div>
+      </div>
+      <div class="img-container">
+        <img src="/image2.jpg" alt="image2" fetchpriority="<%= image2 %>">
+        <div class="img-text">image2</div>
+      </div>
+      <div class="img-container">
+        <img src="/image3.jpg" alt="image3" fetchpriority="<%= image3 %>">
+        <div class="img-text">image3</div>
+      </div>
+      <div class="img-container">
+        <img src="/image4.jpg" alt="image4" fetchpriority="<%= image4 %>">
+        <div class="img-text">image4<4/div>
+      </div>
     </div>
 </body>
 </html>

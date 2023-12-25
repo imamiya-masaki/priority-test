@@ -18,6 +18,38 @@
       <p>image3: <%= image3 %></p>
       <p>image4: <%= image4 %></p>
     </div>
+    <!-- 画像のフェッチ優先度を設定するフォーム -->
+    <form action="/body-image-tag" method="get" id="body-image-tag-form">
+        <label for="image1">image1:</label>
+        <select name="image1" id="image1">
+            <option value="low">low</option>
+            <option value="high">high</option>
+            <option value="auto">auto</option>
+        </select>
+
+        <label for="image2">image2:</label>
+        <select name="image2" id="image2">
+            <option value="low">low</option>
+            <option value="high">high</option>
+            <option value="auto">auto</option>
+        </select>
+
+        <label for="image3">image3:</label>
+        <select name="image3" id="image3">
+            <option value="low">low</option>
+            <option value="high">high</option>
+            <option value="auto">auto</option>
+        </select>
+
+        <label for="image4">image4:</label>
+        <select name="image4" id="image4">
+            <option value="low">low</option>
+            <option value="high">high</option>
+            <option value="auto">auto</option>
+        </select>
+
+        <input type="submit" value="フェッチ優先度を設定">
+    </form>
     <div id="imgs">
       <img src="/image1.jpg" alt="image1">
       <img src="/image2.jpg" alt="image2">
