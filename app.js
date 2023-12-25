@@ -1,9 +1,7 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 
 const port = 3000;
-// const htmlDir = `${__dirname}/html/`
 app.set('view engine', 'ejs');
 
 app.use(express.static('assets'));
@@ -11,11 +9,27 @@ app.get('/', (_, res) => {
     res.render('index');
 });
 
+/**
+ * 引数が`image${1|2|3|4}`を満たすか判定する
+ * @param {string} value 
+ */
+const isImageName = (value) => {
+  return !!value.match(/image[1-4]/)
+}
+
 const getImageFetchQuerys = (query) => {
   const imageFetchQuerys = {}
-  for (const key of new Array(4).fill().map((_,i) => `image${i+1}`)) {
-    const value = req.query[key]
-    imageFetchQuerys[key] = value === 'low' || value === 'high' ? value : 'auto';
+  const imageNames = new Array(4).fill().map((_,i) => `image${i+1}`)
+  // 優先度の設定
+  for (const key of imageNames) {
+    const value = query[key]
+    imageFetchQuerys[`${key}Priority`] = value === 'low' || value === 'high' ? value : 'auto';
+  }
+  imageFetchQuerys['sameImageQuery'] = isImageName(query['same-image']) ? query['same-image'] : 'none';
+
+  // 画像pathの生成
+  for (const [index, key] of imageNames.entries()) {
+    imageFetchQuerys[`${key}Path`] = imageFetchQuerys['sameImageQuery'] !== 'none' ? `${imageFetchQuerys['sameImageQuery']}/${index + 1}.jpg` : `${key}/1.jpg`
   }
   return imageFetchQuerys
 }
@@ -36,16 +50,4 @@ app.listen(port, () => {
     console.log(`サーバーがポート${port}で起動しました。 http://localhost:${port}`);
 });
 
-// reload(app).then(() => {
-//     // reloadReturned is documented in the returns API in the README
-  
-//     // Reload started, start web server
-//     server.listen(app.get('port'), function () {
-//       console.log('Web server listening on port ' + port)
-//     })
-//   }).catch( (err) => {
-//     console.error('Reload could not start, could not start server/sample app', err)
-//   })
-
-// index.js
 module.exports = app

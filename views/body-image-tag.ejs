@@ -36,38 +36,49 @@
 </head>
 <body>
   <h1>body-image-tag-Test</h1>
-  <p>[`image${1 | 2 | 3 | 4}`='low' | 'high' | 'auto']でクエリーを設定してください</p>
+  <div id="description">
+  <p>[same-image=`image${1 | 2 | 3 | 4}`]でクエリーを設定すると、設定した画像を異なるファイル4つで表示します</p>
+  <p>[`image${1 | 2 | 3 | 4}`='low' | 'high' | 'auto']で優先度クエリーを設定してください</p>
   <p style="word-break: auto-phrase;">e.g. /body-image-tag?image1=low&image2=high&image4=hogehoge の場合、image1=low, image2=high, image3=auto, image4=auto になります</p>
+  <div>
 
   <!-- 画像のフェッチ優先度を設定するフォーム -->
   <div id="redirect-form">
   <form action="/body-image-tag" method="get" id="body-image-tag-form">
+    <label for="same-image">same-image:</label>
+    <select name="same-image" id="same-image">
+      <option value="none">none</option>
+      <option value="image1" <%= sameImageQuery === 'image1' ? 'selected' : '' %> >image1</option>
+      <option value="image2" <%= sameImageQuery === 'image2' ? 'selected' : '' %>>image2</option>
+      <option value="image3" <%= sameImageQuery === 'image3' ? 'selected' : '' %>>image3</option>
+      <option value="image4" <%= sameImageQuery === 'image4' ? 'selected' : '' %>>image4</option>
+    </select>
     <label for="image1">image1:</label>
     <select name="image1" id="image1">
       <option value="auto">auto</option>
-      <option value="low">low</option>
-      <option value="high">high</option>
+      <option value="low" <%= image1Priority === 'low' ? 'selected' : '' %> >low</option>
+      <option value="high" <%= image1Priority === 'high' ? 'selected' : '' %>>high</option>
     </select>
 
     <label for="image2">image2:</label>
     <select name="image2" id="image2">
       <option value="auto">auto</option>
-      <option value="low">low</option>
-      <option value="high">high</option>
+      <option value="low" <%= image2Priority === 'low' ? 'selected' : '' %> >low</option>
+      <option value="high" <%= image2Priority === 'high' ? 'selected' : '' %>>high</option>
     </select>
 
     <label for="image3">image3:</label>
     <select name="image3" id="image3">
       <option value="auto">auto</option>
-      <option value="low">low</option>
-      <option value="high">high</option>
+      <option value="low" <%= image3Priority === 'low' ? 'selected' : '' %> >low</option>
+      <option value="high" <%= image3Priority === 'high' ? 'selected' : '' %>>high</option>
     </select>
 
     <label for="image4">image4:</label>
     <select name="image4" id="image4">
       <option value="auto">auto</option>
-      <option value="low">low</option>
-      <option value="high">high</option>
+      <option value="low" <%= image4Priority === 'low' ? 'selected' : '' %> >low</option>
+      <option value="high" <%= image4Priority === 'high' ? 'selected' : '' %>>high</option>
     </select>
 
     <input type="submit" value="フェッチ優先度を設定">
@@ -75,20 +86,20 @@
   </div>
     <div id="imgs">
       <div class="img-container">
-        <img src="/image1.jpg" alt="image1" fetchpriority="<%= image1 %>">
-        <div class="img-text">image1</div>
+        <img src="<%= image1Path %>" alt="image1" fetchpriority="<%= image1Priority %>">
+        <div class="img-text">image1(priority: <%= image1Priority %> )</div>
       </div>
       <div class="img-container">
-        <img src="/image2.jpg" alt="image2" fetchpriority="<%= image2 %>">
-        <div class="img-text">image2</div>
+        <img src="<%= image2Path %>" alt="image2" fetchpriority="<%= image2Priority %>">
+        <div class="img-text">image2(priority: <%= image2Priority %> )</div>
       </div>
       <div class="img-container">
-        <img src="/image3.jpg" alt="image3" fetchpriority="<%= image3 %>">
-        <div class="img-text">image3</div>
+        <img src="<%= image3Path %>" alt="image3" fetchpriority="<%= image3Priority %>">
+        <div class="img-text">image3(priority: <%= image3Priority %> )</div>
       </div>
       <div class="img-container">
-        <img src="/image4.jpg" alt="image4" fetchpriority="<%= image4 %>">
-        <div class="img-text">image4<4/div>
+        <img src="<%= image4Path %>" alt="image4" fetchpriority="<%= image4Priority %>">
+        <div class="img-text">image4(priority: <%= image4Priority %> )</div>
       </div>
     </div>
 </body>
