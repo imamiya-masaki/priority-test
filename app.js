@@ -10,16 +10,16 @@ app.get('/', (_, res) => {
 });
 
 /**
- * 引数が`image${1|2|3|4}`を満たすか判定する
+ * 引数が`image${1|2|3|4|5|6}`を満たすか判定する
  * @param {string | undefined} value 
  */
 const isImageName = (value) => {
-  return !!value?.match(/image[1-4]/)
+  return !!value?.match(/image[1-6]/)
 }
 
 const getImageFetchQuerys = (query) => {
   const imageFetchQuerys = {}
-  const imageNames = new Array(4).fill().map((_,i) => `image${i+1}`)
+  const imageNames = new Array(6).fill().map((_,i) => `image${i+1}`)
   // 優先度の設定
   for (const key of imageNames) {
     const value = query[key]

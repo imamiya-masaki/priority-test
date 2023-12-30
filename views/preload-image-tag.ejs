@@ -5,6 +5,8 @@
     <link rel="preload" imagesrcset="<%= image2Path %>" as="image" fetchpriority="<%= image2Priority %>">
     <link rel="preload" imagesrcset="<%= image3Path %>" as="image" fetchpriority="<%= image3Priority %>">
     <link rel="preload" imagesrcset="<%= image4Path %>" as="image" fetchpriority="<%= image4Priority %>">
+    <link rel="preload" imagesrcset="<%= image5Path %>" as="image" fetchpriority="<%= image5Priority %>">
+    <link rel="preload" imagesrcset="<%= image6Path %>" as="image" fetchpriority="<%= image6Priority %>">
     <title>priority-test</title>
     <style>
     /* 画像のスタイル設定 */
@@ -41,8 +43,8 @@
 <body>
   <h1>preload-image-tag-Test</h1>
   <div id="description">
-  <p>[same-image=`image${1 | 2 | 3 | 4}`]でクエリーを設定すると、設定した画像を異なるファイル4つで表示します</p>
-  <p>[`image${1 | 2 | 3 | 4}`='low' | 'high' | 'auto']で優先度クエリーを設定してください</p>
+  <p>[same-image=`image${1 | 2 | 3 | 4 | 5 | 6}`]でクエリーを設定すると、設定した画像を異なるファイル4つで表示します</p>
+  <p>[`image${1 | 2 | 3 | 4 | 5 | 6}`='low' | 'high' | 'auto']で優先度クエリーを設定してください</p>
   <p style="word-break: auto-phrase;">e.g. /preload-image-tag?image1=low&image2=high&image4=hogehoge の場合、image1=low, image2=high, image3=auto, image4=auto になります</p>
   <div>
 
@@ -85,6 +87,20 @@
       <option value="high" <%= image4Priority === 'high' ? 'selected' : '' %>>high</option>
     </select>
 
+    <label for="image5">image5:</label>
+    <select name="image5" id="image5">
+      <option value="auto">auto</option>
+      <option value="low" <%= image5Priority === 'low' ? 'selected' : '' %> >low</option>
+      <option value="high" <%= image5Priority === 'high' ? 'selected' : '' %>>high</option>
+    </select>
+
+    <label for="image6">image6:</label>
+    <select name="image6" id="image6">
+      <option value="auto">auto</option>
+      <option value="low" <%= image5Priority === 'low' ? 'selected' : '' %> >low</option>
+      <option value="high" <%= image5Priority === 'high' ? 'selected' : '' %>>high</option>
+    </select>
+
     <input type="submit" value="フェッチ優先度を設定">
   </form>
   </div>
@@ -104,6 +120,14 @@
       <div class="img-container">
         <img src="<%= image4Path %>" alt="image4">
         <div class="img-text">image4(priority: <%= image4Priority %> )</div>
+      </div>
+      <div class="img-container">
+        <img src="<%= image5Path %>" alt="image5">
+        <div class="img-text">image5(priority: <%= image5Priority %> )</div>
+      </div>
+      <div class="img-container">
+        <img src="<%= image6Path %>" alt="image6">
+        <div class="img-text">image6(priority: <%= image6Priority %> )</div>
       </div>
     </div>
 </body>
